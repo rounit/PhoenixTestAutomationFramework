@@ -19,10 +19,15 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+
+    - name: Debug directory
+      run: |
+        pwd
+        ls -R     
         
     - name: Run Maven Tests
-      working-directory: PhoenixTestAutomationFramework
-      run: mvn clean test -DsuiteXmlFile=testng.xml -Denv=qa
+      run: mvn -f PhoenixTestAutomationFramework/pom.xml clean test -Dsurefire.suiteXmlFiles=PhoenixTestAutomationFramework/testng.xml -Denv=qa
+     
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
