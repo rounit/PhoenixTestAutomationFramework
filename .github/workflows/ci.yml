@@ -21,7 +21,6 @@ jobs:
         cache: maven
         
     - name: Run Maven Tests
-      working-directory: ./PhoenixTestAutomationFramework
       run: mvn clean test -Dsurefire.suiteXmlFiles=./testng.xml -Denv=qa
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
