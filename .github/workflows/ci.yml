@@ -26,7 +26,8 @@ jobs:
         ls -R     
         
     - name: Run Maven Tests
-      run: mvn -f PhoenixTestAutomationFramework/pom.xml clean test -Dsurefire.suiteXmlFiles=PhoenixTestAutomationFramework/testng.xml -Denv=qa
+      working-directory: ./PhoenixTestAutomationFramework
+      run: mvn clean test -Dsurefire.suiteXmlFiles=testng.xml -Denv=qa
      
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
