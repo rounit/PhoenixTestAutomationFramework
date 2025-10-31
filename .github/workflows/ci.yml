@@ -26,7 +26,6 @@ jobs:
         ls -R     
         
     - name: Run Maven Tests
-      working-directory: ./PhoenixTestAutomationFramework
       run: mvn clean test -Dsurefire.suiteXmlFiles=testng.xml -Denv=qa
      
 
