@@ -19,8 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Execute Test Automation Framework
-      run: mvn clean test -DsuiteXmlFile=PhoenixTestAutomationFramework/testng.xml -Denv=qa
+    - name: Run Maven Tests
+      working-directory: ./PhoenixTestAutomationFramework
+      run: mvn clean test -Dsurefire.suiteXmlFiles=./testng.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
