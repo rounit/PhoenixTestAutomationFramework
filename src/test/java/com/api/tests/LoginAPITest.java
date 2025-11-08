@@ -9,44 +9,25 @@ import java.io.IOException;
 import org.testng.annotations.Test;
 
 import com.api.models.UserCredentials;
+import com.api.utils.SpecUtils;
+
 import static com.api.utils.ConfigManager.*;
 
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
-
-public class LoginAPITest 
-{
+public class LoginAPITest {
 	@Test
 	public void loginAPITest() throws IOException
-	
+
 	{
-		 
-		UserCredentials userCred = new UserCredentials("iamfd","password");
-		
-		
-		given()
-		  .baseUri(getProperty("BASE_URI"))
-		  .and()
-		  .contentType(ContentType.JSON)
-		  .and()
-		  .accept(ContentType.JSON)
-		  .and()
-		  .body(userCred)
-		  .log().uri()
-		  .log().method()
-		  .log().headers()
-		  .log().body()
-		.when()
-		   .post("login")
-		.then()
-		   .log().all()
-		   .statusCode(200)
-		   .time(lessThan(1500L))
-		   .and()
-		   .body("message",equalTo("Success"))
-		   .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
-		   
+
+		UserCredentials userCred = new UserCredentials("iamfd", "password");
+
+		given().spec(SpecUtils.requestSpec(userCred)).when().post("login").then().spec(SpecUtils.responseSpec_OK())
+				.body("message", equalTo("Success")).and()
+				.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
+
 	}
 
 }
