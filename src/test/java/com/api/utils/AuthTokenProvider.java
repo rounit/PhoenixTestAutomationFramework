@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import java.io.IOException;
 
 import com.api.constant.Roles;
-import com.api.models.UserCredentials;
+import com.api.request.model.UserCredentials;
 
 import io.restassured.http.ContentType;
 
