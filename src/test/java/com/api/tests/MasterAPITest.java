@@ -1,33 +1,29 @@
 package com.api.tests;
 
+import static io.restassured.RestAssured.given;
+
+import java.io.IOException;
+
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import com.api.constant.Roles;
-import com.api.utils.SpecUtils;
+import static com.api.utils.SpecUtils.*;
 
-import io.restassured.module.jsv.JsonSchemaValidator;
-
-import static com.api.utils.AuthTokenProvider.*;
-
-import static com.api.utils.ConfigManager.*;
-
-import static io.restassured.RestAssured.*;
-
-import java.io.IOException;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class MasterAPITest 
 {
-	@Test
+	@Test(description="Verify if Master API response is giving correct response", groups= {"api","smoke","regression"})
 	public void masterAPITest() throws IOException
 	{
 		given()
-		  .spec(SpecUtils.requestSpecWithAuth(Roles.FD))
+		  .spec(requestSpecWithAuth(Roles.FD))
 		  .when()
 		  .post("master")
 		  .then()
 		  .log().all()
-		  .spec(SpecUtils.responseSpec_OK())
+		  .spec(responseSpec_OK())
 		  .body("message",Matchers.equalTo("Success"))
 		  .body("data",Matchers.notNullValue())
 		  .body("data",Matchers.hasKey("mst_oem"))
@@ -37,18 +33,18 @@ public class MasterAPITest
 		  .body("data.mst_model.size()",Matchers.greaterThan(0))
 		  .body("data.mst_oem.id",Matchers.everyItem(Matchers.notNullValue()))
 		  .body("data.mst_oem.name",Matchers.everyItem(Matchers.notNullValue()))
-		  .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/MasterAPIResponseSchema.json"));	  
+		  .body(matchesJsonSchemaInClasspath("response-schema/MasterAPIResponseSchema.json"));	  
 	}
 	
-	@Test
+	@Test(description="Verify if Master API response is giving correct status code for invalid token", groups= {"api","negative","smoke","regression"})
 	public void invalidTokenForMasterAPITest() throws IOException
 	{
 		given()
-		  .spec(SpecUtils.requestSpec())
+		  .spec(requestSpec())
 		  .when()
 		  .post("master")
 		  .then()
-		  .spec(SpecUtils.responseSpec(401));
+		  .spec(responseSpec(401));
 	}
 
 }

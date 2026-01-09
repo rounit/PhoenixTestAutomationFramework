@@ -14,7 +14,7 @@ import java.io.IOException;
 import org.hamcrest.Matchers;
 
 import com.api.constant.Roles;
-import com.api.models.UserCredentials;
+import com.api.request.model.UserCredentials;
 
 public class SpecUtils 
 {
@@ -57,6 +57,22 @@ public class SpecUtils
 				    .setContentType(ContentType.JSON)
 				    .setAccept(ContentType.JSON)
 				    .addHeader("Authorization", AuthTokenProvider.getToken(role))
+				    .log(LogDetail.URI)
+				    .log(LogDetail.METHOD)
+				    .log(LogDetail.HEADERS)
+				    .log(LogDetail.BODY)
+				    .build();
+				    return requestSpecification;
+	 }
+	 
+	 public static RequestSpecification requestSpecWithAuth(Roles role,Object payload) throws IOException
+	 {
+		 RequestSpecification requestSpecification = new RequestSpecBuilder()
+				    .setBaseUri(getProperty("BASE_URI"))
+				    .setContentType(ContentType.JSON)
+				    .setAccept(ContentType.JSON)
+				    .addHeader("Authorization", AuthTokenProvider.getToken(role))
+				    .setBody(payload)
 				    .log(LogDetail.URI)
 				    .log(LogDetail.METHOD)
 				    .log(LogDetail.HEADERS)
