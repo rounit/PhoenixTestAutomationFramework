@@ -1,32 +1,28 @@
 package com.api.tests;
 
+import static com.api.constant.Roles.FD;
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+import java.io.IOException;
+
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
-import com.api.utils.SpecUtils;
-
-import static com.api.constant.Roles.*;
-import static com.api.utils.AuthTokenProvider.*;
-import static com.api.utils.ConfigManager.*;
-
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
-
-import static io.restassured.RestAssured.*;
-
-import java.io.IOException;
+import static com.api.utils.SpecUtils.*;
 
 public class CountAPITest 
 {
 	
-	@Test
+	@Test(description="Verify if Count API response is giving correct response", groups= {"api","smoke","regression"})
 	public void verifyAPIResponse() throws IOException
 	{
 		given()
-		 .spec(SpecUtils.requestSpecWithAuth(FD))
+		 .spec(requestSpecWithAuth(FD))
 		 .when()
 		 .get("/dashboard/count")
 		 .then()
-		 .spec(SpecUtils.responseSpec_OK())
+		 .spec(responseSpec_OK())
 		 .body("message",Matchers.equalTo("Success"))
 		 .time(Matchers.lessThan(1000L))
 		 .body("data",Matchers.notNullValue())
@@ -38,15 +34,15 @@ public class CountAPITest
 		 .body(matchesJsonSchemaInClasspath("response-schema/CountAPIResponseSchema-FD.json"));
 	}
 	
-	@Test
+	@Test(description="Verify if Count API response is giving correct status code for invalid token", groups= {"api","negative","smoke","regression"})
 	public void countAPITest_MissingAuthToken() throws IOException
 	{
 		given()
-		 .spec(SpecUtils.requestSpec())
+		 .spec(requestSpec())
 		 .when()
 		 .get("/dashboard/count")
 		 .then()
-		 .spec(SpecUtils.responseSpec_TEXT(401));
+		 .spec(responseSpec_TEXT(401));
 	}
 	
 	
