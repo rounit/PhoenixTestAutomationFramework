@@ -39,6 +39,8 @@ public class MasterAPITest
 	@Test(description="Verify if Master API response is giving correct status code for invalid token", groups= {"api","negative","smoke","regression"})
 	public void invalidTokenForMasterAPITest() throws IOException
 	{
+		io.restassured.RestAssured.reset();
+		
 		given()
 		  .spec(requestSpec())
 		  .when()

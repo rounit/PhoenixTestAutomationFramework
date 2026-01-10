@@ -55,7 +55,7 @@ public class SpecUtils
 		 RequestSpecification requestSpecification = new RequestSpecBuilder()
 				    .setBaseUri(getProperty("BASE_URI"))
 				    .setContentType(ContentType.JSON)
-				    .setAccept(ContentType.JSON)
+				    //.setAccept(ContentType.JSON)
 				    .addHeader("Authorization", AuthTokenProvider.getToken(role))
 				    .log(LogDetail.URI)
 				    .log(LogDetail.METHOD)
