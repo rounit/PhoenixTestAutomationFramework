@@ -1,5 +1,14 @@
 package com.api.utils;
 
+import static com.api.utils.ConfigManager.getProperty;
+
+import java.io.IOException;
+
+import org.hamcrest.Matchers;
+import org.testng.annotations.BeforeMethod;
+
+import com.api.constant.Roles;
+
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -7,17 +16,13 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
-import static com.api.utils.ConfigManager.*;
-
-import java.io.IOException;
-
-import org.hamcrest.Matchers;
-
-import com.api.constant.Roles;
-import com.api.request.model.UserCredentials;
-
 public class SpecUtils 
 {
+	@BeforeMethod
+	public void resetRestAssured() {
+	    io.restassured.RestAssured.reset();
+	}
+	
 	//GET-DEL
 	 public static RequestSpecification requestSpec() throws IOException
 	 {
