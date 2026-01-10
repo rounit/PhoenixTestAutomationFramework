@@ -44,7 +44,7 @@ public class MasterAPITest
 		  .when()
 		  .post("master")
 		  .then()
-		  .spec(responseSpec(401));
+		  .spec(responseSpec_TEXT(401));
 	}
 
 }
