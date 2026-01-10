@@ -24,7 +24,7 @@ public class SpecUtils
 		 RequestSpecification requestSpecification = new RequestSpecBuilder()
 		    .setBaseUri(getProperty("BASE_URI"))
 		    .setContentType(ContentType.JSON)
-		    .setAccept(ContentType.JSON)
+		    //.setAccept(ContentType.JSON)
 		    .log(LogDetail.URI)
 		    .log(LogDetail.METHOD)
 		    .log(LogDetail.HEADERS)
