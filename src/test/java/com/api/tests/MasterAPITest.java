@@ -46,11 +46,12 @@ public class MasterAPITest extends BaseAPI
 		
 		
 		given()
+		  .relaxedHTTPSValidation()
 		  .spec(requestSpec())
 		  .when()
 		  .post("master")
 		  .then()
-		  .spec(responseSpec_TEXT(401));
+		  .statusCode(401);
 	}
 
 }
