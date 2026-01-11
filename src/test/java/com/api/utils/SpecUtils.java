@@ -18,10 +18,7 @@ import io.restassured.specification.ResponseSpecification;
 
 public class SpecUtils 
 {
-	@BeforeMethod
-	public void resetRestAssured() {
-	    io.restassured.RestAssured.reset();
-	}
+	
 	
 	//GET-DEL
 	 public static RequestSpecification requestSpec() throws IOException
