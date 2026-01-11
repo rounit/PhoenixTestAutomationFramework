@@ -9,7 +9,12 @@ public class BaseAPI
 
 	    @BeforeMethod(alwaysRun = true)
 	    public void resetRestAssured() {
-	        RestAssured.reset();
+	    	RestAssured.reset();
+
+	        
+	        RestAssured.requestSpecification = null;
+	        RestAssured.responseSpecification = null;
+
 	        RestAssured.defaultParser = null;
 	    }
 	}

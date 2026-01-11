@@ -21,6 +21,7 @@
           <suiteXmlFiles>
             <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
           </suiteXmlFiles>
+          <failIfNoTests>false</failIfNoTests>
         </configuration>
       </plugin>
      </plugins>
