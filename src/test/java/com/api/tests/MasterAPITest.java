@@ -51,7 +51,7 @@ public class MasterAPITest extends BaseAPI
 		  .when()
 		  .post("master")
 		  .then()
-		  //.spec(responseSpec_TEXT(401))
+		  .spec(responseSpec_TEXT(401))
 		  .log()
 		  .all();
 	}

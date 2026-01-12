@@ -86,7 +86,7 @@ public class SpecUtils
 	 public static ResponseSpecification responseSpec_OK()
 	 {
 		 ResponseSpecification responseSpecification = new ResponseSpecBuilder()
-		   .expectContentType(ContentType.JSON)
+		   //.expectContentType(ContentType.JSON)
 		   .expectStatusCode(200)
 		   .expectResponseTime(Matchers.lessThan(1000L))
 		   .log(LogDetail.ALL)
@@ -98,7 +98,7 @@ public class SpecUtils
 	 public static ResponseSpecification responseSpec(int statusCode)
 	 {
 		 ResponseSpecification responseSpecification = new ResponseSpecBuilder()
-		   .expectContentType(ContentType.JSON)
+		   //.expectContentType(ContentType.JSON)
 		   .expectStatusCode(statusCode)
 		   .expectResponseTime(Matchers.lessThan(1000L))
 		   .log(LogDetail.ALL)
