@@ -12,7 +12,7 @@ public class BaseAPI
 	    public void resetRestAssured() {
 	   
 	        RestAssured.requestSpecification = null;
-	        RestAssured.defaultParser = Parser.JSON;
+	        
 	    }
 	}
 
