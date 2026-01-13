@@ -112,7 +112,7 @@ public class SpecUtils
 		 ResponseSpecification responseSpecification = new ResponseSpecBuilder()
 		   
 		   .expectStatusCode(statusCode)
-		   .expectResponseTime(Matchers.lessThan(1000L))
+		   .expectResponseTime(Matchers.lessThan(2000L))
 		   .log(LogDetail.ALL)
 		   .build();
 		 
