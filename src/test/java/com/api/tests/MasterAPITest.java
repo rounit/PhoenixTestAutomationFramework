@@ -3,7 +3,7 @@ package com.api.tests;
 import static com.api.utils.SpecUtils.requestSpec;
 import static com.api.utils.SpecUtils.requestSpecWithAuth;
 import static com.api.utils.SpecUtils.responseSpec_OK;
-import static com.api.utils.SpecUtils.responseSpec_TEXT;
+
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
@@ -51,7 +51,7 @@ public class MasterAPITest extends BaseAPI
 		  .when()
 		  .post("master")
 		  .then()
-		  .spec(responseSpec_TEXT(401))
+		  .statusCode(401)
 		  .log()
 		  .all();
 	}
