@@ -31,7 +31,7 @@ import com.api.utils.DateTimeUtil;
 public class CreateJobAPIFakerDataDrivenTest {
 
 	@Test(description = "Verify if CreateJob API is able to create Inwrranty job", groups = { "api", "smoke",
-			"regression" },
+			"regression","datadriven","faker" },
 
 			dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIFakerDataProvider"
 
