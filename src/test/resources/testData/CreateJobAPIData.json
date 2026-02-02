@@ -1,0 +1,135 @@
+[
+	{
+	    "mst_service_location_id": 0,
+	    "mst_platform_id": 2,
+	    "mst_warrenty_status_id": 1,
+	    "mst_oem_id": 1,
+	    "customer": {
+	        "first_name": "Era",
+	        "last_name": "Padberg",
+	        "mobile_number": "563-301-0323",
+	        "mobile_number_alt": "",
+	        "email_id": "Shea.Mante11@yahoo.com",
+	        "email_id_alt": ""
+	    },
+	    "customer_address": {
+	        "flat_number": "c 304",
+	        "apartment_name": "Jupiter",
+	        "street_name": "MG road",
+	        "landmark": "Bangur Nagar",
+	        "area": "Goregaon West",
+	        "pincode": "411039",
+	        "country": "India",
+	        "state": "Maharashtra"
+	    },
+	    "customer_product": {
+	        "dop": "2025-04-06T18:30:00.000Z",
+	        "serial_number": "53380803649261",
+	        "imei1": "53380803649261",
+	        "imei2": "53380803649261",
+	        "popurl": "2025-04-06T18:30:00.000Z",
+	        "product_id": 1,
+	        "mst_model_id": 1
+	    },
+	    "problems": [
+	        {
+	            "id": 1,
+	            "remark": "Battery Issue"
+	        },
+			{
+				            "id": 2,
+				            "remark": "Not Working"
+				        }
+			
+	    ]
+	},
+	{
+		    "mst_service_location_id": 0,
+		    "mst_platform_id": 2,
+		    "mst_warrenty_status_id": 1,
+		    "mst_oem_id": 1,
+		    "customer": {
+		        "first_name": "Era",
+		        "last_name": "Padberg",
+		        "mobile_number": "563-301-0323",
+		        "mobile_number_alt": "",
+		        "email_id": "Shea.Mante11@yahoo.com",
+		        "email_id_alt": ""
+		    },
+		    "customer_address": {
+		        "flat_number": "c 304",
+		        "apartment_name": "Jupiter",
+		        "street_name": "MG road",
+		        "landmark": "Bangur Nagar",
+		        "area": "Goregaon West",
+		        "pincode": "411039",
+		        "country": "India",
+		        "state": "Maharashtra"
+		    },
+		    "customer_product": {
+		        "dop": "2025-04-06T18:30:00.000Z",
+		        "serial_number": "93380803649261",
+		        "imei1": "93380803649261",
+		        "imei2": "93380803649261",
+		        "popurl": "2025-04-06T18:30:00.000Z",
+		        "product_id": 1,
+		        "mst_model_id": 1
+		    },
+		    "problems": [
+		        {
+		            "id": 1,
+		            "remark": "Battery Issue"
+		        },
+				{
+					            "id": 2,
+					            "remark": "Not Working"
+					        }
+				
+		    ]
+		},
+		{
+			    "mst_service_location_id": 0,
+			    "mst_platform_id": 2,
+			    "mst_warrenty_status_id": 1,
+			    "mst_oem_id": 1,
+			    "customer": {
+			        "first_name": "Era",
+			        "last_name": "Padberg",
+			        "mobile_number": "563-301-0323",
+			        "mobile_number_alt": "",
+			        "email_id": "Shea.Mante11@yahoo.com",
+			        "email_id_alt": ""
+			    },
+			    "customer_address": {
+			        "flat_number": "c 304",
+			        "apartment_name": "Jupiter",
+			        "street_name": "MG road",
+			        "landmark": "Bangur Nagar",
+			        "area": "Goregaon West",
+			        "pincode": "411039",
+			        "country": "India",
+			        "state": "Maharashtra"
+			    },
+			    "customer_product": {
+			        "dop": "2025-04-06T18:30:00.000Z",
+			        "serial_number": "83380803649261",
+			        "imei1": "83380803649261",
+			        "imei2": "83380803649261",
+			        "popurl": "2025-04-06T18:30:00.000Z",
+			        "product_id": 1,
+			        "mst_model_id": 1
+			    },
+			    "problems": [
+			        {
+			            "id": 1,
+			            "remark": "Battery Issue"
+			        },
+					{
+						            "id": 2,
+						            "remark": "Not Working"
+						        }
+					
+			    ]
+			}
+	
+]
