@@ -28,12 +28,12 @@ import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
 import com.api.utils.DateTimeUtil;
 
-public class CreateJobAPIDataDrivenTest {
+public class CreateJobAPIFakerDataDrivenTest {
 
 	@Test(description = "Verify if CreateJob API is able to create Inwrranty job", groups = { "api", "smoke",
-			"regression","datadriven","csv" },
+			"regression","datadriven","faker" },
 
-			dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIDataProvider"
+			dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIFakerDataProvider"
 
 	)
 	public void createJobAPITest(CreateJobPayload createJobPayload) throws IOException {
@@ -46,5 +46,7 @@ public class CreateJobAPIDataDrivenTest {
 				.body("data.job_number", Matchers.startsWith("JOB_"));
 
 	}
+	
+	
 
 }
