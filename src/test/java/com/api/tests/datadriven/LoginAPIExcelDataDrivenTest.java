@@ -29,11 +29,11 @@ public class LoginAPIExcelDataDrivenTest {
 	,dataProvider = "LoginAPIExcelDataProvider")
 	
 	
-	public void loginAPITest(UserCredentials userCredentials) throws IOException 
+	public void loginAPITest(UserBean userBean) throws IOException 
 
 	{
 		given()
-		.spec(requestSpec(userCredentials))
+		.spec(requestSpec(userBean))
 		.when()
 		.post("login")
 		.then().spec(responseSpec_OK())
