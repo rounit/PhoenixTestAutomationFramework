@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import com.api.utils.ConfigManager;
 
-public class DatabaseManager  
+public class DatabaseManagerOld  
 
 {
 	private static final String DB_URL = ConfigManager.getProperty("DB_URL");
@@ -15,7 +15,7 @@ public class DatabaseManager
 	private static final String DB_PASSWORD = ConfigManager.getProperty("DB_PASSWORD");
 	private volatile static  Connection conn;
 	
-	private DatabaseManager()
+	private DatabaseManagerOld()
 	{
 		
 	}
@@ -25,7 +25,7 @@ public class DatabaseManager
 	{
 		if(conn==null)
 		{
-			synchronized(DatabaseManager.class)
+			synchronized(DatabaseManagerOld.class)
 			{
 				if(conn==null)
 				{
