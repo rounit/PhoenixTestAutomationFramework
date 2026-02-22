@@ -2,14 +2,14 @@ package com.database.dao;
 
 import java.sql.SQLException;
 
-import com.database.model.CustomerProductDBModel;
+import com.database.model.JobHeadModel;
 
 public class DemoRunnerDao {
 
 	public static void main(String[] args) throws SQLException 
 	{
-		CustomerProductDBModel customerProductDBModel =CustomerProductDao.getProductInfo(193931);
-		System.out.println(customerProductDBModel);
+		JobHeadModel jobHeadModel =JobHeadDao.getDataFromJobHead(193941);
+		System.out.println(jobHeadModel);
 		
 
 	}
