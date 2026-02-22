@@ -42,7 +42,7 @@ import com.database.model.MapJobProblemModel;
 
 import io.restassured.response.Response;
 
-public class CreateJobAPITestWithDBValidationTest2 
+public class CreateJobAPITestWithDBValidationTestWithresponseModel 
 {
 	
 	private CreateJobPayload createJobPayload;
