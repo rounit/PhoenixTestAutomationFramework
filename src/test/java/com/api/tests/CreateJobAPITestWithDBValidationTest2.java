@@ -27,6 +27,7 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.response.model.CreateJobResponseModel;
 import com.api.utils.DateTimeUtil;
 import com.database.dao.CustomerAddressDAO;
 import com.database.dao.CustomerDao;
@@ -37,7 +38,7 @@ import com.database.model.CustomerProductDBModel;
 
 import io.restassured.response.Response;
 
-public class CreateJobAPITestWithDBValidationTest 
+public class CreateJobAPITestWithDBValidationTest2 
 {
 	
 	private CreateJobPayload createJobPayload;
@@ -51,7 +52,7 @@ public class CreateJobAPITestWithDBValidationTest
 		 customer = new Customer("Rounit", "Sharma", "7000298282", "7000299383", "rounitsharma@gmail.com", "rounitsharma@gmail.com");
 		 customerAddress = new CustomerAddress("GI1-503", "Green Iconia-1", "Road No-20", "Behind Tulja Ram Temple", "Alkapur Township", "500089"
 				, "India", "Telanaga");
-		 customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "66269747447088", "66269747447088", "66269747447088", 
+		 customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "68369747446758", "68369747446758", "68369747446758", 
 				DateTimeUtil.getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
 		Problems problems = new Problems(Problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
 		List<Problems> problemList = new ArrayList<Problems>();
@@ -63,7 +64,7 @@ public class CreateJobAPITestWithDBValidationTest
 	public void createJobAPITest() throws IOException
 	{
 		
-		Response response =given()
+		CreateJobResponseModel createJobResponseModel =given()
 		.spec(requestSpecWithAuth(Roles.FD, createJobPayload))
 		.when()
 		.post("/job/create")
@@ -73,11 +74,13 @@ public class CreateJobAPITestWithDBValidationTest
 		.body("message",Matchers.equalTo("Job created successfully. "))
 		.body("data.mst_service_location_id",Matchers.equalTo(1))
 		.body("data.job_number",Matchers.startsWith("JOB_"))
-		.extract().response();
+		.extract().as(CreateJobResponseModel.class);
+		
+		System.out.println(createJobResponseModel);
 		System.out.println("----------------------");
 		System.out.println();
 		
-		int customerId = response.then().extract().body().jsonPath().getInt("data.tr_customer_id");
+		int customerId = createJobResponseModel.getData().getTr_customer_id();
 		
 		CustomerDBModel customerDataFromDB = CustomerDao.getCustomerInfo(customerId);
 		System.out.println(customerDataFromDB);
@@ -101,7 +104,7 @@ public class CreateJobAPITestWithDBValidationTest
 		Assert.assertEquals(customerAddressFromDB.getCountry(), customerAddress.country());
 		Assert.assertEquals(customerAddressFromDB.getPincode(), customerAddress.pincode());
 		
-		int productId = response.then().extract().body().jsonPath().getInt("data.tr_customer_product_id");
+		int productId = createJobResponseModel.getData().getTr_customer_product_id();
 		
 		CustomerProductDBModel customerProductDbData = CustomerProductDao.getProductInfo(productId);
 		
@@ -111,9 +114,7 @@ public class CreateJobAPITestWithDBValidationTest
 		Assert.assertEquals(customerProductDbData.getSerial_number(), customerProduct.serial_number());
 		Assert.assertEquals(customerProductDbData.getDop(), customerProduct.dop());
 		Assert.assertEquals(customerProductDbData.getPopurl(), customerProduct.popurl());
-		Assert.assertEquals(customerProductDbData.getMst_model_id(), customerProduct.mst_model_id());
-		
-		
+		Assert.assertEquals(customerProductDbData.getMst_model_id(), customerProduct.mst_model_id());		
 		
 		
 	}
