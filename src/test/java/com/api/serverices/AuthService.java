@@ -13,7 +13,7 @@ public class AuthService
 {
 	private static final String LOGIN_ENDPOINT = "login";
 	
-	public Response login(UserCredentials userCredentials) throws IOException
+	public Response login(Object userCredentials) throws IOException
 	{
 		Response response = given()
 		.spec(requestSpec(userCredentials))
