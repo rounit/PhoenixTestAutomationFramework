@@ -13,18 +13,28 @@ import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.api.constant.Roles;
+import static com.api.constant.Roles.FD;
+import com.api.request.model.UserCredentials;
+import com.api.serverices.AuthService;
+import com.api.serverices.MasterService;
 
 public class MasterAPITest extends BaseAPI
 {
 	
+	
+    private MasterService masterService;
+	
+	@BeforeMethod(description="Create the Payload for the login API")
+	public void setup()
+	{
+		 
+		masterService = new MasterService();
+	}
+	
 	@Test(description="Verify if Master API response is giving correct response", groups= {"api","smoke","regression"})
 	public void masterAPITest() throws IOException
 	{
-		given()
-		  .spec(requestSpecWithAuth(Roles.FD))
-		  .when()
-		  .post("master")
+		masterService.master(FD)
 		  .then()
 		  .log().all()
 		  .spec(responseSpec_OK())

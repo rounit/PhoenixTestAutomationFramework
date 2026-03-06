@@ -29,6 +29,7 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.serverices.JobService;
 import com.api.utils.DateTimeUtil;
 import com.api.utils.FakerDataGenerator;
 import com.database.dao.CustomerAddressDAO;
@@ -41,7 +42,7 @@ import com.github.javafaker.Faker;
 
 public class CreateJobAPITestWithFakerData 
 {
-	
+	private JobService jobService;
 	private CreateJobPayload createJobPayload;
 	private final static String COUNTRY = "India";
 	
@@ -49,17 +50,15 @@ public class CreateJobAPITestWithFakerData
 	public void setup()
 	{
 		createJobPayload = FakerDataGenerator.generateFakeCreateJobData();
+		jobService = new JobService();
 	}
 	
 	@Test(description="Verify if CreateJob API is able to create Inwrranty job", groups= {"api","smoke","regression"})
 	public void createJobAPITest() throws IOException
 	{
 		
-		int customerId =given()
-		.spec(requestSpecWithAuth(Roles.FD, createJobPayload))
-		.when()
-		.post("/job/create")
-		.then()
+		int customerId = jobService.createJob(Roles.FD, createJobPayload)
+				.then()
 		.spec(responseSpec_OK())
 		.body(matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
 		.body("message",Matchers.equalTo("Job created successfully. "))

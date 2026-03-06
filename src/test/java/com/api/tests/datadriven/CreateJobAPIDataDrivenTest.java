@@ -26,9 +26,18 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.serverices.JobService;
 import com.api.utils.DateTimeUtil;
 
 public class CreateJobAPIDataDrivenTest {
+	
+	private JobService jobService;
+	
+	@BeforeMethod(description="Creating createjob api request payload")
+	public void setup()
+	{
+		jobService = new JobService();
+	}
 
 	@Test(description = "Verify if CreateJob API is able to create Inwrranty job", groups = { "api", "smoke",
 			"regression","datadriven","csv" },
@@ -38,7 +47,8 @@ public class CreateJobAPIDataDrivenTest {
 	)
 	public void createJobAPITest(CreateJobPayload createJobPayload) throws IOException {
 
-		given().spec(requestSpecWithAuth(Roles.FD, createJobPayload)).when().post("/job/create").then()
+		jobService.createJob(Roles.FD, createJobPayload).
+		then()
 				.spec(responseSpec_OK())
 				.body(matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
 				.body("message", Matchers.equalTo("Job created successfully. "))
