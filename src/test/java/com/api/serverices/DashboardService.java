@@ -15,10 +15,12 @@ public class DashboardService
 	
 	public static final String COUNT_ENDPOINT = "/dashboard/count";
 	
+	public static final String DETAIL_COUNT = "/dashboard/details";
+	
 	public Response count(Roles role) throws IOException
 	{
 		return given()
-		 .spec(requestSpecWithAuth(FD))
+		 .spec(requestSpecWithAuth(role))
 		 .when()
 		 .get(COUNT_ENDPOINT);
 	}
@@ -29,6 +31,15 @@ public class DashboardService
 				.spec(requestSpec())
 		 .when()
 		 .get(COUNT_ENDPOINT);
+	}
+	
+	public Response details(Roles role,Object payload) throws IOException
+	{
+		return given()
+		 .spec(requestSpecWithAuth(role))
+		 .body(payload)
+		 .when()
+		 .post(DETAIL_COUNT);
 	}
 
 }
