@@ -12,16 +12,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
+import com.api.serverices.AuthService;
 import com.dataproviders.api.bean.UserBean;
 
 public class LoginAPIJsonDataDrivenTest {
 	
-	private UserCredentials userCred ;
+	private AuthService authService;
 	
-	@BeforeMethod(description="Create the Payload for the login API")
+	@BeforeMethod(description="Setting up the AuthService reference")
 	public void setup()
 	{
-		 userCred = new UserCredentials("iamfd", "password");
+		 authService = new AuthService();
 	}
 	
 	@Test(description="Verifying if login api os working for FD user", groups= {"api","regression","datadriven"}
@@ -32,10 +33,7 @@ public class LoginAPIJsonDataDrivenTest {
 	public void loginAPITest(UserCredentials userCredentials) throws IOException 
 
 	{
-		given()
-		.spec(requestSpec(userCredentials))
-		.when()
-		.post("login")
+		authService.login(userCredentials)
 		.then().spec(responseSpec_OK())
 		.body("message", equalTo("Success"))
 		.and()

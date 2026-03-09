@@ -27,6 +27,7 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.serverices.JobService;
 import com.api.utils.DateTimeUtil;
 import com.database.dao.CustomerAddressDAO;
 import com.database.dao.CustomerDao;
@@ -48,6 +49,7 @@ public class CreateJobAPITestWithDBValidationTest
 	private Customer customer;
 	private CustomerAddress customerAddress;
 	private CustomerProduct customerProduct;
+	private JobService jobService;
 	
 	@BeforeMethod(description="Creating createjob api request payload")
 	public void setup()
@@ -61,16 +63,14 @@ public class CreateJobAPITestWithDBValidationTest
 		List<Problems> problemList = new ArrayList<Problems>();
 		problemList.add(problems);
 		 createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(), Platform.FRONT_DESK.getCode(), Warranty_Status.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer, customerAddress, customerProduct, problemList);
+		 jobService = new JobService();
 	}
 	
 	@Test(description="Verify if CreateJob API is able to create Inwrranty job", groups= {"api","smoke","regression"})
 	public void createJobAPITest() throws IOException
 	{
 		
-		Response response =given()
-		.spec(requestSpecWithAuth(Roles.FD, createJobPayload))
-		.when()
-		.post("/job/create")
+		Response response =jobService.createJob(Roles.FD, createJobPayload)
 		.then()
 		.spec(responseSpec_OK())
 		.body(matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))

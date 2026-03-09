@@ -7,20 +7,29 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import java.io.IOException;
 
 import org.hamcrest.Matchers;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import com.api.serverices.DashboardService;
+import com.api.serverices.UserServices;
 
 import static com.api.utils.SpecUtils.*;
 
 public class CountAPITest 
 {
 	
+private DashboardService dashboardService;
+	
+	@BeforeMethod(description="Setting up Dashboard instance")
+	public void setup()
+	{
+		dashboardService = new DashboardService();
+	}
+	
 	@Test(description="Verify if Count API response is giving correct response", groups= {"api","smoke","regression"})
 	public void verifyAPIResponse() throws IOException
 	{
-		given()
-		 .spec(requestSpecWithAuth(FD))
-		 .when()
-		 .get("/dashboard/count")
+		dashboardService.count(FD)
 		 .then()
 		 .spec(responseSpec_OK())
 		 .body("message",Matchers.equalTo("Success"))
@@ -37,10 +46,7 @@ public class CountAPITest
 	@Test(description="Verify if Count API response is giving correct status code for invalid token", groups= {"api","negative","smoke","regression"})
 	public void countAPITest_MissingAuthToken() throws IOException
 	{
-		given()
-		 .spec(requestSpec())
-		 .when()
-		 .get("/dashboard/count")
+		dashboardService.countWithNoAuth()
 		 .then()
 		 .spec(responseSpec_TEXT(401));
 	}
