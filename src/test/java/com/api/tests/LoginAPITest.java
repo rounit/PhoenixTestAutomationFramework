@@ -11,19 +11,18 @@ import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
 import com.api.serverices.AuthService;
-
-import io.restassured.response.Response;
+import com.dataproviders.api.bean.UserBean;
 
 public class LoginAPITest {
 	
-	private UserCredentials userCred ;
+	private UserBean userCred ;
 	
 	private AuthService authService;
 	
 	@BeforeMethod(description="Create the Payload for the login API")
 	public void setup()
 	{
-		 userCred = new UserCredentials("iamfd", "password");
+		 userCred = new UserBean("iamfd", "password");
 		 authService = new AuthService();
 	}
 	

@@ -22,7 +22,7 @@ public class LoginAPIExcelDataDrivenTest {
 	@BeforeMethod(description="Setting up the AuthService reference")
 	public void setup()
 	{
-		AuthService authService = new AuthService();
+		 authService = new AuthService();
 	}
 	
 	@Test(description="Verifying if login api os working for FD user", groups= {"api","regression","datadriven"}
@@ -30,10 +30,10 @@ public class LoginAPIExcelDataDrivenTest {
 	,dataProvider = "LoginAPIExcelDataProvider")
 	
 	
-	public void loginAPITest(UserCredentials userCred) throws IOException 
+	public void loginAPITest(UserBean userBean) throws IOException 
 
 	{
-		authService.login(userCred)
+		authService.login(userBean)
 		.then().spec(responseSpec_OK())
 		.body("message", equalTo("Success"))
 		.and()

@@ -30,7 +30,7 @@ public class LoginAPIJsonDataDrivenTest {
 	,dataProvider = "LoginAPIJsonDataProvider")
 	
 	
-	public void loginAPITest(UserCredentials userCredentials) throws IOException 
+	public void loginAPITest(UserBean userCredentials) throws IOException 
 
 	{
 		authService.login(userCredentials)
