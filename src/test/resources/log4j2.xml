@@ -5,6 +5,11 @@
               <PatternLayout pattern="%d [%t] %highlight{%5p} %c::%M():%L - %m%n"></PatternLayout>
           
           </Console>
+          
+          <File name="FileAppender" fileName="logs/application.log">
+              <PatternLayout pattern="%d [%t] %highlight{%5p} %c::%M():%L - %m%n"></PatternLayout>
+          
+          </File>
       </appenders>
       
       <loggers>
@@ -12,6 +17,7 @@
          <root level="info">
          
              <AppenderRef ref="Console"></AppenderRef>
+             <AppenderRef ref="FileAppender"></AppenderRef>
          
          </root>
       
