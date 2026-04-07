@@ -7,12 +7,15 @@ import static org.hamcrest.Matchers.equalTo;
 import java.io.IOException;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.api.request.model.UserCredentials;
 import com.api.serverices.AuthService;
 import com.dataproviders.api.bean.UserBean;
 
+
+@Listeners(com.listeners.APITestListener.class)
 public class LoginAPITest {
 	
 	private UserBean userCred ;
@@ -37,5 +40,7 @@ public class LoginAPITest {
 		.body(matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
 
 	}
+	
+	
 
 }
