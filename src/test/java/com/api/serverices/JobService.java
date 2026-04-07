@@ -5,6 +5,9 @@ import static io.restassured.RestAssured.given;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.constant.Roles;
 import com.api.request.model.CreateJobPayload;
 import com.api.utils.SpecUtils;
@@ -18,8 +21,11 @@ public class JobService
 	
 	public static final String SEARCH_JOB_ENDPOINT = "/job/search";
 	
+	private static final Logger LOGGER = LogManager.getLogger(JobService.class);
+	
 	public Response createJob(Roles role,CreateJobPayload createJobPayload) throws IOException
 	{
+		LOGGER.info("Making request to  {} with the role {} and payload {}",CREATE_JOB_ENDPOINT,role,createJobPayload);
 		return given()
 		.spec(requestSpecWithAuth(Roles.FD, createJobPayload))
 		.when()
@@ -28,6 +34,7 @@ public class JobService
 	
 	public Response createJob(Roles role,Object payload) throws IOException
 	{
+		LOGGER.info("Making request to  {} with the role {} and payload {}",SEARCH_JOB_ENDPOINT,role,payload);
 		return given()
 		.spec(SpecUtils.requestSpecWithAuth(role))
 		.body(payload)

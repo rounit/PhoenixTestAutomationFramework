@@ -5,10 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.database.DatabaseManager;
 import com.database.model.CustomerAddressDBModel;
 
 public class CustomerAddressDAO {
+	
+	private static final Logger LOGGER = LogManager.getLogger(CustomerAddressDAO.class);
 	private static final String CUSTOMER_ADDRESS_QUERY = """
           SELECT
             id,
@@ -36,7 +41,9 @@ public class CustomerAddressDAO {
 		PreparedStatement ps;
 		ResultSet rs ;
 		try {
+			LOGGER.info("Getting the Connection from the Database Manager");
 			conn = DatabaseManager.getConnection();
+			LOGGER.info("Executing ther SQL Query {}", CUSTOMER_ADDRESS_QUERY );
 			 ps = conn.prepareStatement(CUSTOMER_ADDRESS_QUERY);
 			 ps.setInt(1, customerAddressId);
 			 rs = ps.executeQuery();
@@ -54,7 +61,7 @@ public class CustomerAddressDAO {
 			 }
 			 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			LOGGER.error("Cannot convert the result set to the CustomerAddressDBModel bean" , e);
 			e.printStackTrace();
 		}
 		

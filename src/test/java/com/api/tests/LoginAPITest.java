@@ -7,23 +7,25 @@ import static org.hamcrest.Matchers.equalTo;
 import java.io.IOException;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.api.request.model.UserCredentials;
 import com.api.serverices.AuthService;
+import com.dataproviders.api.bean.UserBean;
 
-import io.restassured.response.Response;
 
+@Listeners(com.listeners.APITestListener.class)
 public class LoginAPITest {
 	
-	private UserCredentials userCred ;
+	private UserBean userCred ;
 	
 	private AuthService authService;
 	
 	@BeforeMethod(description="Create the Payload for the login API")
 	public void setup()
 	{
-		 userCred = new UserCredentials("iamfd", "password");
+		 userCred = new UserBean("iamfd", "password");
 		 authService = new AuthService();
 	}
 	
@@ -38,5 +40,7 @@ public class LoginAPITest {
 		.body(matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
 
 	}
+	
+	
 
 }

@@ -6,11 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.database.DatabaseManager;
 import com.database.model.CustomerDBModel;
 
 public class CustomerDao 
 {
+	
+	private static final Logger LOGGER = LogManager.getLogger(CustomerDao.class);
 	private static final String CUSTOMER_DETAIL_QUERY=
 			"""
 			SELECT * FROM tr_customer where id = ?
@@ -25,7 +30,9 @@ public class CustomerDao
 		CustomerDBModel customerDBModel = null;
 		try 
 		{
+			LOGGER.info("Getting the Connection from the Database Manager");
 		Connection conn = DatabaseManager.getConnection();
+		LOGGER.info("Executing ther SQL Query {}", CUSTOMER_DETAIL_QUERY );
 		PreparedStatement preparedStatement = conn.prepareStatement(CUSTOMER_DETAIL_QUERY);
 		preparedStatement.setInt(1, customerID);
 		ResultSet rs = preparedStatement.executeQuery();
@@ -40,6 +47,7 @@ public class CustomerDao
 		}
 		catch(SQLException e)
 		{
+			LOGGER.error("Cannot convert the result set to the CustomerDBModel bean" , e);
 			System.err.print(e.getMessage());
 		}
 		
