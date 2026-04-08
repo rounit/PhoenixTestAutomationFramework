@@ -10,6 +10,7 @@ import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
 
 import com.api.constant.Roles;
+import com.api.filters.SensitiveDataFilter;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -45,6 +46,7 @@ public class SpecUtils
 		    .setContentType(ContentType.JSON)
 		    //.setAccept(ContentType.JSON)
 		    .setBody(userCreds)
+		    .addFilter(new SensitiveDataFilter())
 		    .log(LogDetail.URI)
 		    .log(LogDetail.METHOD)
 		    .log(LogDetail.HEADERS)
