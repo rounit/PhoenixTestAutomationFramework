@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constant.Model;
@@ -29,6 +30,7 @@ import com.api.request.model.Problems;
 import com.api.serverices.JobService;
 import com.api.utils.DateTimeUtil;
 
+@Listeners(com.listeners.APITestListener.class)
 public class CreateJobAPIFakerDataDrivenTest {
 	
 	

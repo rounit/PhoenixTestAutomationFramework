@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.serverices.DashboardService;
@@ -15,6 +16,7 @@ import com.api.serverices.UserServices;
 
 import static com.api.utils.SpecUtils.*;
 
+@Listeners(com.listeners.APITestListener.class)
 public class CountAPITest 
 {
 	
