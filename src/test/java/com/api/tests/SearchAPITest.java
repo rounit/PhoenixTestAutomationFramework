@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constant.Roles;
@@ -11,6 +12,7 @@ import com.api.request.model.Search;
 import com.api.serverices.JobService;
 import com.api.utils.SpecUtils;
 
+@Listeners(com.listeners.APITestListener.class)
 public class SearchAPITest 
 {
 	private JobService jobService;
