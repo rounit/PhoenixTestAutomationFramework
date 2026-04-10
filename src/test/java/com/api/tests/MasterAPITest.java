@@ -1,9 +1,8 @@
 package com.api.tests;
 
+import static com.api.constant.Roles.FD;
 import static com.api.utils.SpecUtils.requestSpec;
-import static com.api.utils.SpecUtils.requestSpecWithAuth;
 import static com.api.utils.SpecUtils.responseSpec_OK;
-
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
@@ -11,13 +10,12 @@ import java.io.IOException;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import static com.api.constant.Roles.FD;
-import com.api.request.model.UserCredentials;
-import com.api.serverices.AuthService;
 import com.api.serverices.MasterService;
 
+@Listeners(com.listeners.APITestListener.class)
 public class MasterAPITest extends BaseAPI
 {
 	

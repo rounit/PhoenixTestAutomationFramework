@@ -1,20 +1,18 @@
 package com.api.tests;
 
+import static com.api.constant.Roles.FD;
 import static com.api.utils.SpecUtils.responseSpec_OK;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import java.io.IOException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.api.constant.Roles;
-import com.api.serverices.MasterService;
 import com.api.serverices.UserServices;
-import static com.api.constant.Roles.FD;
 
+@Listeners(com.listeners.APITestListener.class)
 public class UserDetailsAPITest 
 {
 	
