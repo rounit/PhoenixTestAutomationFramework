@@ -30,6 +30,15 @@ import com.api.request.model.Problems;
 import com.api.serverices.JobService;
 import com.api.utils.DateTimeUtil;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
+@Epic("Job Management")
+@Feature("Job Creation")
 @Listeners(com.listeners.APITestListener.class)
 public class CreateJobAPITest 
 {
@@ -53,6 +62,9 @@ public class CreateJobAPITest
 		 jobService = new JobService();
 	}
 	
+	@Story("FD should be able to create job")
+	@Description("Verify if FD CreateJob API is able to create Inwrranty job")
+	@Severity(SeverityLevel.BLOCKER)
 	@Test(description="Verify if CreateJob API is able to create Inwrranty job", groups= {"api","smoke","regression"})
 	public void createJobAPITest() throws IOException
 	{

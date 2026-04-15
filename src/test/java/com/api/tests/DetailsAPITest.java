@@ -12,6 +12,16 @@ import com.api.request.model.Detail;
 import com.api.serverices.DashboardService;
 import com.api.utils.SpecUtils;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
+
+@Epic("Job Management")
+@Feature("Job Details")
 @Listeners(com.listeners.APITestListener.class)
 public class DetailsAPITest 
 {
@@ -26,6 +36,10 @@ public class DetailsAPITest
 		detailPayload = new Detail("created today");
 	}
 	
+	
+	@Story("Job details is shown correctly for FD")
+	@Description("Verify if Details API is working properly")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test(description="Verify if Details API is working properly",groups = {"api","smoke","e2e"})
 	public void detailAPITest() throws IOException
 	{
