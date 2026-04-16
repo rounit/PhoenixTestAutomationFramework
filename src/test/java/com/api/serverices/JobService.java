@@ -12,6 +12,7 @@ import com.api.constant.Roles;
 import com.api.request.model.CreateJobPayload;
 import com.api.utils.SpecUtils;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 public class JobService 
@@ -23,6 +24,7 @@ public class JobService
 	
 	private static final Logger LOGGER = LogManager.getLogger(JobService.class);
 	
+	@Step("Creating inwarranty Job with Create Job API")
 	public Response createJob(Roles role,CreateJobPayload createJobPayload) throws IOException
 	{
 		LOGGER.info("Making request to  {} with the role {} and payload {}",CREATE_JOB_ENDPOINT,role,createJobPayload);
@@ -32,6 +34,7 @@ public class JobService
 		.post(CREATE_JOB_ENDPOINT);
 	}
 	
+	@Step("Making Search API Request")
 	public Response createJob(Roles role,Object payload) throws IOException
 	{
 		LOGGER.info("Making request to  {} with the role {} and payload {}",SEARCH_JOB_ENDPOINT,role,payload);
