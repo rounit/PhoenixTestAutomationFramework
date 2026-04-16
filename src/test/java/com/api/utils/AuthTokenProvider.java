@@ -15,6 +15,7 @@ import com.api.constant.Roles;
 import com.api.request.model.UserCredentials;
 import com.api.serverices.MasterService;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 
 public class AuthTokenProvider {
@@ -26,6 +27,7 @@ public class AuthTokenProvider {
 	private AuthTokenProvider()
 	{}
 
+	@Step("Getting the Auth Token for the role")
 	public static String getToken(Roles role) throws IOException 
 	{
 		

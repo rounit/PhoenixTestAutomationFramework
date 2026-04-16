@@ -16,6 +16,8 @@ import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
 import com.github.javafaker.Faker;
 
+import io.qameta.allure.Step;
+
 public class FakerDataGenerator 
 {
 	private static Faker faker = new Faker(new Locale("en-IND"));
@@ -39,6 +41,7 @@ public class FakerDataGenerator
 		
 	}
 	
+	@Step("Generating Fake Create job Data")
 	public static CreateJobPayload generateFakeCreateJobData()
 	{
 		LOGGER.info("Generating the fake payload for Create job");
@@ -50,6 +53,7 @@ public class FakerDataGenerator
 		return payload;
 	}
 	
+	@Step("Generating multiple Fake Create job Data with the count")
 	public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count)
 	{
 		LOGGER.info("Generating the fake {}  payload for Create job",count);
@@ -67,6 +71,7 @@ public class FakerDataGenerator
 		
 	}
 
+	@Step("Generating Fake Problem List for the Createjob payload")
 	private static List<Problems> generateFakeProblemList() 
 	{
 		Random random = new Random();
@@ -87,6 +92,7 @@ public class FakerDataGenerator
 		return problemList;
 	}
 
+	@Step("Generating Fake Customer Product for info")
 	private static CustomerProduct generateFakeCustomerProductData() 
 	{
 		String dop = DateTimeUtil.getTimeWithDaysAgo(10);
@@ -96,6 +102,7 @@ public class FakerDataGenerator
         return custProduct;
 	}
 
+	@Step("Generating Fake Create data info")
 	private static Customer generateFakeCustomerData() 
 	{
 		
@@ -110,6 +117,7 @@ public class FakerDataGenerator
         return customer;
 	}
 	
+	@Step("Generating Fake Create address data")
 	private static CustomerAddress generateFakeCustomerAddressData() {
 		
 		String flatNumber = faker.numerify("###");
