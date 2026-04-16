@@ -1,5 +1,8 @@
 name: Phoenix Test Automation Workflow
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ "master" ]
